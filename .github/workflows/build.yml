@@ -87,7 +87,8 @@ jobs:
           path: out/*.apk
 
   windows:
-    runs-on: windows-latest
+    # Flutter 3.27 knows Visual Studio 2019/2022 only; windows-latest has a newer one.
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
 
