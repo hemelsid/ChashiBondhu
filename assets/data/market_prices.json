@@ -1,0 +1,14 @@
+{
+  "sample": true,
+  "note": "নমুনা দর। আসল দর বসাতে এই ফাইল বা Supabase-এর market_prices টেবিল হালনাগাদ করুন।",
+  "items": [
+    {"id": "rui", "label": "রুই", "emoji": "🐟", "price": 320, "market": "নমুনা বাজার", "date": "2026-11-01"},
+    {"id": "katla", "label": "কাতলা", "emoji": "🐟", "price": 350, "market": "নমুনা বাজার", "date": "2026-11-01"},
+    {"id": "pangas", "label": "পাঙাশ", "emoji": "🐟", "price": 180, "market": "নমুনা বাজার", "date": "2026-11-01"},
+    {"id": "tilapia", "label": "তেলাপিয়া", "emoji": "🐟", "price": 200, "market": "নমুনা বাজার", "date": "2026-11-01"},
+    {"id": "chingri", "label": "চিংড়ি", "emoji": "🦐", "price": 700, "market": "নমুনা বাজার", "date": "2026-11-01"},
+    {"id": "dhan", "label": "ধান", "emoji": "🌾", "price": 32, "market": "নমুনা বাজার", "date": "2026-11-01"},
+    {"id": "alu", "label": "আলু", "emoji": "🥔", "price": 30, "market": "নমুনা বাজার", "date": "2026-11-01"},
+    {"id": "peyaj", "label": "পেঁয়াজ", "emoji": "🧅", "price": 60, "market": "নমুনা বাজার", "date": "2026-11-01"}
+  ]
+}
