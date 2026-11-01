@@ -1,21 +1,45 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../../core/remote/remote_data.dart';
 import '../../core/storage/local_db.dart';
 import '../../core/sync/sync_manager.dart';
 import 'market_price.dart';
 
-/// Bundled JSON (manual update for now).
+/// Bundled JSON (inside the app — works with no internet).
 class AssetMarketPriceSource implements MarketPriceSource {
   const AssetMarketPriceSource();
 
   @override
   Future<MarketPriceSet?> fetch() async {
-    final text = await rootBundle.loadString('assets/data/market_prices.json');
+    final text = await RemoteData.asset('market_prices.json');
     final m = jsonDecode(text) as Map<String, dynamic>;
     return MarketPriceSet.fromMap({...m, 'source': 'asset'});
+  }
+}
+
+/// The same file on GitHub, downloaded by [RemoteData]. Edit
+/// assets/data/market_prices.json on GitHub and every app gets it.
+class GithubMarketPriceSource implements MarketPriceSource {
+  const GithubMarketPriceSource();
+
+  /// Used by RemoteData to accept a downloaded file.
+  static bool isValid(String text) {
+    try {
+      final set = MarketPriceSet.fromMap(jsonDecode(text) as Map<String, dynamic>);
+      return set.items.isNotEmpty && set.items.every((i) => i.pricePerKg >= 0);
+    } catch (_) {
+      return false;
+    }
+  }
+
+  @override
+  Future<MarketPriceSet?> fetch() async {
+    final text = RemoteData.text('market_prices.json');
+    if (text == null || !isValid(text)) return null;
+    final m = jsonDecode(text) as Map<String, dynamic>;
+    return MarketPriceSet.fromMap({...m, 'source': 'online'});
   }
 }
 
@@ -56,7 +80,10 @@ class MarketPriceRepository {
   static final MarketPriceRepository instance = MarketPriceRepository._();
 
   /// Tried in order on refresh; first non-empty wins.
-  final List<MarketPriceSource> remoteSources = const [SupabaseMarketPriceSource()];
+  final List<MarketPriceSource> remoteSources = const [
+    SupabaseMarketPriceSource(),
+    GithubMarketPriceSource(),
+  ];
 
   Box<dynamic> get _box => LocalDb.box(LocalDb.marketPrices);
 
@@ -64,7 +91,8 @@ class MarketPriceRepository {
   Future<MarketPriceSet> current() async {
     final m = _box.get('current');
     if (m is Map) return MarketPriceSet.fromMap(m);
-    return (await const AssetMarketPriceSource().fetch())!;
+    return await const GithubMarketPriceSource().fetch() ??
+        (await const AssetMarketPriceSource().fetch())!;
   }
 
   /// Tries online sources; keeps the old prices if offline.

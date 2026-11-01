@@ -25,7 +25,8 @@ create table if not exists public.ponds (
   owner_id     uuid not null references auth.users(id) on delete cascade,
   name         text not null,
   area_shotok  numeric not null,
-  species      text not null,        -- pangas|tilapia|rui|katla|mrigel|chingri
+  species      text not null,        -- pangas|tilapia|rui|katla|mrigel|chingri|shing|magur|koi|… |other
+  species_name text default '',       -- typed name when species = other
   stock_count  integer not null,
   stock_date   date not null,
   avg_weight_g numeric not null,
@@ -150,3 +151,6 @@ create policy "read own photos" on storage.objects
 -- ---------- Example: add today's prices (admin) ----------
 -- insert into public.market_prices (item_id, label, emoji, price_per_kg, market, price_date)
 -- values ('rui','রুই','🐟',320,'ময়মনসিংহ মাছবাজার', current_date);
+
+-- Upgrading from 0.3: add the new column
+alter table public.ponds add column if not exists species_name text default '';

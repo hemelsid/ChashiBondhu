@@ -4,7 +4,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'app.dart';
+import 'app_data.dart';
 import 'core/notifications/notification_service.dart';
+import 'core/remote/remote_data.dart';
 import 'core/storage/local_db.dart';
 import 'core/sync/sync_manager.dart';
 
@@ -13,6 +15,7 @@ import 'core/sync/sync_manager.dart';
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalDb.init(); // offline storage, no login, no internet needed
+  registerRemoteData();
   await NotificationService.instance.init();
   runApp(const ChashibondhuApp());
 
@@ -22,6 +25,7 @@ Future<void> main(List<String> args) async {
     });
     return;
   }
-  // Optional cloud backup starts after the first screen; never blocks.
-  unawaited(SyncManager.instance.start());
+  // Online parts start after the first screen; they never block the app.
+  RemoteData.start(); // newer contacts, prices, news, disease library
+  unawaited(SyncManager.instance.start()); // optional cloud backup
 }

@@ -20,3 +20,17 @@ Future<void> callNumber(BuildContext context, String number) async {
     );
   }
 }
+
+/// Opens a web page in the phone's / PC's browser.
+Future<void> openLink(BuildContext context, String url) async {
+  final messenger = ScaffoldMessenger.of(context);
+  var ok = false;
+  try {
+    ok = await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+  } catch (_) {
+    ok = false;
+  }
+  if (!ok) {
+    messenger.showSnackBar(SnackBar(content: Text('খোলা যায়নি: $url')));
+  }
+}

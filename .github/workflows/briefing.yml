@@ -1,0 +1,34 @@
+name: Update headlines
+
+# Every 6 hours: collect agriculture headlines into assets/data/briefing.json.
+# Apps download it automatically when online. Does not build a new APK.
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: briefing
+  cancel-in-progress: true
+
+jobs:
+  headlines:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect headlines
+        run: python3 tool/make_briefing.py
+      - name: Save if changed
+        run: |
+          if git diff --quiet -- assets/data/briefing.json; then
+            echo "no change"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/data/briefing.json
+          git commit -m "খবর হালনাগাদ (স্বয়ংক্রিয়)"
+          git pull --rebase origin main
+          git push

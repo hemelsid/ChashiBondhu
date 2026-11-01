@@ -15,7 +15,9 @@ import '../../core/utils/photo_store.dart';
 import '../../core/widgets/big_button.dart';
 import '../../core/widgets/confirm_dialog.dart';
 import '../../core/widgets/section_title.dart';
+import '../../core/remote/remote_data.dart';
 import '../backup/backup_screen.dart';
+import '../contacts/contacts_screen.dart';
 import '../pond/ui/pond_list_screen.dart';
 import '../weather/district_picker_screen.dart';
 
@@ -59,6 +61,14 @@ class SettingsScreen extends StatelessWidget {
 
               // ---- Officers ----
               const SectionTitle('সাহায্যের জন্য যোগাযোগ', icon: Icons.support_agent),
+              BigButton(
+                label: 'সব যোগাযোগ (হেল্পলাইন, অফিস, এনজিও)',
+                icon: Icons.support_agent,
+                outlined: true,
+                onPressed: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => const ContactsScreen())),
+              ),
+              const SizedBox(height: 10),
               _OfficerTile(
                 title: 'উপজেলা মৎস্য কর্মকর্তা',
                 name: AppSettings.fishOfficerName,
@@ -97,6 +107,8 @@ class SettingsScreen extends StatelessWidget {
                 child: Text('ফোন থেকে কম্পিউটারে, বা নতুন ফোনে — ইন্টারনেট ছাড়াই',
                     style: TextStyle(fontSize: 15, color: AppColors.textMuted)),
               ),
+              const SectionTitle('অনলাইন তথ্য হালনাগাদ', icon: Icons.sync),
+              const _DataUpdateTile(),
               const SectionTitle('অনলাইন ব্যাকআপ', icon: Icons.cloud),
               const _SyncTile(),
 
@@ -335,6 +347,52 @@ class _SyncTile extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class _DataUpdateTile extends StatelessWidget {
+  const _DataUpdateTile();
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<OnlineState>(
+      valueListenable: RemoteData.state,
+      builder: (context, state, _) {
+        final last = RemoteData.lastUpdated;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'ইন্টারনেট থাকলে যোগাযোগের তালিকা, বাজার দর, খবর আর রোগের তথ্য নিজে থেকে '
+              'হালনাগাদ হয়। ইন্টারনেট না থাকলে শেষ তথ্য দিয়েই সব চলে।',
+              style: TextStyle(fontSize: 16, color: AppColors.textMuted),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              last == null ? 'এখনো হালনাগাদ হয়নি' : 'শেষ হালনাগাদ: ${Bn.relativeDate(last)}',
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            BigButton(
+              label: state == OnlineState.checking ? 'খোঁজা হচ্ছে…' : 'এখনই হালনাগাদ করুন',
+              icon: Icons.sync,
+              outlined: true,
+              onPressed: state == OnlineState.checking
+                  ? null
+                  : () async {
+                      final messenger = ScaffoldMessenger.of(context);
+                      await RemoteData.refresh(force: true);
+                      final now = RemoteData.state.value;
+                      messenger.showSnackBar(SnackBar(
+                          content: Text(now == OnlineState.online
+                              ? 'তথ্য হালনাগাদ হয়েছে ✓'
+                              : 'ইন্টারনেট নেই — পরে নিজে থেকে হবে')));
+                    },
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -13,6 +13,10 @@ class LocalDb {
   static const biosecurity = 'biosecurity_checks';
   static const marketPrices = 'market_prices';
   static const syncOutbox = 'sync_outbox';
+  static const contacts = 'contacts';
+
+  /// Downloaded data files (cache, see RemoteData).
+  static const remoteData = 'remote_data';
   static const settings = 'settings';
 
   /// Farmer's own records. "Clear offline data" empties these.
@@ -24,12 +28,13 @@ class LocalDb {
     biosecurity,
     marketPrices,
     syncOutbox,
+    contacts,
   ];
 
   static Future<void> init() async {
     await Hive.initFlutter('chashibondhu');
     await Future.wait([
-      for (final name in [...dataBoxes, settings]) Hive.openBox<dynamic>(name),
+      for (final name in [...dataBoxes, settings, remoteData]) Hive.openBox<dynamic>(name),
     ]);
   }
 

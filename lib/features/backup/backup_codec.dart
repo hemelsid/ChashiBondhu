@@ -18,6 +18,7 @@ class BackupCodec {
     LocalDb.diseaseReports,
     LocalDb.reminders,
     LocalDb.biosecurity,
+    LocalDb.contacts,
   ];
 
   /// Settings worth carrying over (area, officer numbers).

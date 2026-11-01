@@ -6,9 +6,9 @@ import '../../../core/utils/bangla.dart';
 import '../../../core/utils/ids.dart';
 import '../../../core/widgets/big_button.dart';
 import '../../../core/widgets/big_number_field.dart';
-import '../../../core/widgets/choice_grid.dart';
 import '../../../core/widgets/date_field.dart';
 import '../../../core/widgets/section_title.dart';
+import '../../../core/widgets/species_picker.dart';
 import '../data/pond.dart';
 import '../data/pond_repository.dart';
 
@@ -27,6 +27,7 @@ class _PondFormScreenState extends State<PondFormScreen> {
   late final TextEditingController _area;
   late final TextEditingController _count;
   late final TextEditingController _weight;
+  late final TextEditingController _customSpecies;
   FishSpecies? _species;
   late DateTime _stockDate;
   String? _error;
@@ -45,6 +46,7 @@ class _PondFormScreenState extends State<PondFormScreen> {
     _weight = TextEditingController(
         text: p == null ? '' : Bn.number(p.avgWeightG, maxDecimals: 1));
     _species = p?.species;
+    _customSpecies = TextEditingController(text: p?.customSpecies ?? '');
     _stockDate = p?.stockDate ?? DateTime.now();
   }
 
@@ -54,6 +56,7 @@ class _PondFormScreenState extends State<PondFormScreen> {
     _area.dispose();
     _count.dispose();
     _weight.dispose();
+    _customSpecies.dispose();
     super.dispose();
   }
 
@@ -71,6 +74,8 @@ class _PondFormScreenState extends State<PondFormScreen> {
       error = 'পুকুরের আয়তন (শতক) লিখুন।';
     } else if (species == null) {
       error = 'মাছের জাত বেছে নিন।';
+    } else if (species == FishSpecies.other && _customSpecies.text.trim().isEmpty) {
+      error = 'মাছের নাম লিখুন।';
     } else if (count == null || count <= 0) {
       error = 'কতটি মাছ ছেড়েছেন লিখুন।';
     } else if (weight == null || weight <= 0) {
@@ -93,6 +98,7 @@ class _PondFormScreenState extends State<PondFormScreen> {
             avgWeightG: weight!,
             createdAt: now,
             updatedAt: now,
+            customSpecies: _customSpecies.text.trim(),
           )
         : old.copyWith(
             name: name,
@@ -101,6 +107,7 @@ class _PondFormScreenState extends State<PondFormScreen> {
             stockCount: count,
             stockDate: _stockDate,
             avgWeightG: weight,
+            customSpecies: _customSpecies.text.trim(),
           );
     await PondRepository.instance.savePond(pond);
     if (!mounted) return;
@@ -135,13 +142,10 @@ class _PondFormScreenState extends State<PondFormScreen> {
             unit: 'শতক',
           ),
           const SectionTitle('মাছের জাত', icon: Icons.set_meal),
-          ChoiceGrid<FishSpecies>(
-            options: [
-              for (final s in FishSpecies.values)
-                ChoiceOption(value: s, label: s.label, emoji: s.emoji),
-            ],
+          SpeciesPicker(
             selected: _species,
             onSelected: (s) => setState(() => _species = s),
+            customName: _customSpecies,
           ),
           BigNumberField(
             controller: _count,

@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "updated": "2026-11-02",
+  "note": "শুধু যাচাই করা নম্বর। অফিসারের নম্বর যোগ করতে 'officers' তালিকায় লিখুন: district_id (lib/core/data/bd_districts.dart অনুযায়ী), upazila, office (fisheries/dae/dls), name, designation, phone, source।",
+  "helplines": [
+    {
+      "id": "krishi_call_center",
+      "name": "কৃষি কল সেন্টার",
+      "number": "16123",
+      "desc": "কৃষি, মাছ ও গবাদিপশু নিয়ে পরামর্শ",
+      "source": "জাতীয় তথ্য বাতায়ন (বরগুনা জেলা) — কলসেন্টার সমূহ"
+    },
+    {
+      "id": "info_333",
+      "name": "জাতীয় তথ্য ও সেবা কল সেন্টার",
+      "number": "333",
+      "desc": "সরকারি সেবা ও অফিসের তথ্য, যে কোনো মোবাইল থেকে",
+      "source": "জাতীয় তথ্য বাতায়ন (বরগুনা জেলা) — কলসেন্টার সমূহ"
+    },
+    {
+      "id": "weather_1090",
+      "name": "আবহাওয়া ও দুর্যোগ সতর্কবার্তা",
+      "number": "1090",
+      "desc": "টোল ফ্রি, ২৪ ঘণ্টা — রেকর্ড করা আবহাওয়া ও দুর্যোগের আগাম বার্তা",
+      "source": "দুর্যোগ ব্যবস্থাপনা অধিদপ্তর — আইভিআর"
+    },
+    {
+      "id": "emergency_999",
+      "name": "জাতীয় জরুরি সেবা",
+      "number": "999",
+      "desc": "পুলিশ, ফায়ার সার্ভিস, অ্যাম্বুলেন্স — বিনা খরচে",
+      "source": "জাতীয় জরুরি সেবা"
+    }
+  ],
+  "organizations": [
+    {"id": "dof", "type": "govt", "name": "মৎস্য অধিদপ্তর", "desc": "মাছ চাষ, পোনা, রোগ ও প্রশিক্ষণ", "website": "https://fisheries.gov.bd"},
+    {"id": "dae", "type": "govt", "name": "কৃষি সম্প্রসারণ অধিদপ্তর", "desc": "ফসল চাষ, বীজ, সার ও রোগ-পোকা", "website": "https://dae.gov.bd"},
+    {"id": "dls", "type": "govt", "name": "প্রাণিসম্পদ অধিদপ্তর", "desc": "গরু, ছাগল, হাঁস-মুরগি ও ভেট সেবা", "website": "https://dls.gov.bd"},
+    {"id": "ais", "type": "govt", "name": "কৃষি তথ্য সার্ভিস", "desc": "কৃষি তথ্য, পরামর্শ ও প্রকাশনা", "website": "https://ais.gov.bd"},
+    {"id": "dam", "type": "govt", "name": "কৃষি বিপণন অধিদপ্তর", "desc": "কৃষিপণ্যের বাজার দর", "website": "https://dam.gov.bd"},
+    {"id": "bamis", "type": "govt", "name": "কৃষি আবহাওয়া তথ্য (বামিস)", "desc": "কৃষকের জন্য আবহাওয়া পরামর্শ", "website": "https://www.bamis.gov.bd"},
+    {"id": "bmd", "type": "govt", "name": "বাংলাদেশ আবহাওয়া অধিদপ্তর", "desc": "আবহাওয়ার পূর্বাভাস ও সতর্ক সংকেত", "website": "https://www.bmd.gov.bd"},
+    {"id": "bfri", "type": "research", "name": "বাংলাদেশ মৎস্য গবেষণা ইনস্টিটিউট", "desc": "মাছ চাষের প্রযুক্তি ও গবেষণা", "website": "https://fri.gov.bd"},
+    {"id": "brri", "type": "research", "name": "বাংলাদেশ ধান গবেষণা ইনস্টিটিউট", "desc": "ধানের জাত, রোগ ও চাষ পদ্ধতি", "website": "https://brri.gov.bd"},
+    {"id": "bari", "type": "research", "name": "বাংলাদেশ কৃষি গবেষণা ইনস্টিটিউট", "desc": "সবজি, ফল, ডাল ও তেলবীজ", "website": "https://bari.gov.bd"},
+    {"id": "worldfish", "type": "ngo", "name": "ওয়ার্ল্ডফিশ", "desc": "মাছ চাষ উন্নয়ন ও প্রশিক্ষণ", "website": "https://worldfishcenter.org"},
+    {"id": "brac", "type": "ngo", "name": "ব্র্যাক", "desc": "কৃষি, ঋণ ও প্রশিক্ষণ কর্মসূচি", "website": "https://www.brac.net"},
+    {"id": "pksf", "type": "ngo", "name": "পল্লী কর্ম-সহায়ক ফাউন্ডেশন (পিকেএসএফ)", "desc": "সহযোগী সংস্থার মাধ্যমে কৃষি ঋণ ও সহায়তা", "website": "https://pksf.org.bd"}
+  ],
+  "officers": []
+}

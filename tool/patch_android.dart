@@ -15,14 +15,18 @@ void main() {
       'notifications, signing, R8 rules.');
 }
 
-/// Copies branding/android/mipmap-*/ic_launcher.png over the Flutter default.
+/// Copies everything in branding/android/<res-folder>/ into the app's res/
+/// folder: launcher icons (incl. adaptive icon), notification icon, keep.xml.
 void _icon() {
   final src = Directory('branding/android');
   if (!src.existsSync()) return;
   for (final dir in src.listSync().whereType<Directory>()) {
     final name = dir.uri.pathSegments.where((s) => s.isNotEmpty).last;
     final target = Directory('android/app/src/main/res/$name')..createSync(recursive: true);
-    File('${dir.path}/ic_launcher.png').copySync('${target.path}/ic_launcher.png');
+    for (final f in dir.listSync().whereType<File>()) {
+      final fileName = f.uri.pathSegments.last;
+      f.copySync('${target.path}/$fileName');
+    }
   }
 }
 
@@ -130,6 +134,10 @@ void _manifest() {
         <intent>
             <action android:name="android.intent.action.DIAL" />
             <data android:scheme="tel" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
         </intent>
     </queries>
 </manifest>''');

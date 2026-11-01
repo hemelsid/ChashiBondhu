@@ -58,6 +58,7 @@ final Map<String, SyncTable> kSyncTables = {
       'name': m['name'],
       'area_shotok': m['areaShotok'],
       'species': m['species'],
+      'species_name': m['customSpecies'] ?? '',
       'stock_count': m['stockCount'],
       'stock_date': _day(m['stockDate']),
       'avg_weight_g': m['avgWeightG'],

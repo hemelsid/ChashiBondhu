@@ -5,8 +5,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/utils/bangla.dart';
 import '../../core/widgets/big_button.dart';
 import '../../core/widgets/big_number_field.dart';
-import '../../core/widgets/choice_grid.dart';
 import '../../core/widgets/section_title.dart';
+import '../../core/widgets/species_picker.dart';
 import 'feed_calculator.dart';
 import 'feed_result_screen.dart';
 
@@ -87,11 +87,8 @@ class _FeedScreenState extends State<FeedScreen> {
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
         children: [
           const SectionTitle('মাছের জাত', icon: Icons.set_meal),
-          ChoiceGrid<FishSpecies>(
-            options: [
-              for (final s in FishSpecies.values)
-                ChoiceOption(value: s, label: s.label, emoji: s.emoji),
-            ],
+          // "অন্য মাছ" uses the general fish feeding rate.
+          SpeciesPicker(
             selected: _species,
             onSelected: (s) => setState(() => _species = s),
           ),

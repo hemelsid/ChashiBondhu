@@ -11,6 +11,7 @@ class Pond {
     required this.avgWeightG,
     required this.createdAt,
     required this.updatedAt,
+    this.customSpecies = '',
   });
 
   final String id;
@@ -31,6 +32,15 @@ class Pond {
   final DateTime createdAt;
   final DateTime updatedAt;
 
+  /// Name typed by the farmer when [species] is "অন্য মাছ".
+  final String customSpecies;
+
+  /// What to show: the typed name for "অন্য মাছ", else the species name.
+  String get speciesLabel =>
+      species == FishSpecies.other && customSpecies.trim().isNotEmpty
+          ? customSpecies.trim()
+          : species.label;
+
   Pond copyWith({
     String? name,
     double? areaShotok,
@@ -39,6 +49,7 @@ class Pond {
     DateTime? stockDate,
     double? avgWeightG,
     DateTime? updatedAt,
+    String? customSpecies,
   }) {
     return Pond(
       id: id,
@@ -50,6 +61,7 @@ class Pond {
       avgWeightG: avgWeightG ?? this.avgWeightG,
       createdAt: createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      customSpecies: customSpecies ?? this.customSpecies,
     );
   }
 
@@ -63,6 +75,7 @@ class Pond {
         'avgWeightG': avgWeightG,
         'createdAt': createdAt.millisecondsSinceEpoch,
         'updatedAt': updatedAt.millisecondsSinceEpoch,
+        'customSpecies': customSpecies,
       };
 
   factory Pond.fromMap(Map<dynamic, dynamic> m) {
@@ -78,6 +91,7 @@ class Pond {
       avgWeightG: (m['avgWeightG'] as num?)?.toDouble() ?? 0,
       createdAt: date('createdAt'),
       updatedAt: date('updatedAt'),
+      customSpecies: (m['customSpecies'] as String?) ?? '',
     );
   }
 }

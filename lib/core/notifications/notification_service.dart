@@ -32,7 +32,7 @@ class NotificationService {
       tzdata.initializeTimeZones();
       tz.setLocalLocation(tz.getLocation('Asia/Dhaka'));
       await _plugin.initialize(const InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+        android: AndroidInitializationSettings('@drawable/ic_stat_notify'),
       ));
       _ready = true;
     } catch (e) {

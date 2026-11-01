@@ -50,7 +50,7 @@ class BackupService {
         rows.add([
           BackupCodec.fileDate(l.date),
           p.name,
-          p.species.label,
+          p.speciesLabel,
           BackupCodec.numText(l.feedKg),
           l.deadCount,
           l.waterColor?.label ?? '',

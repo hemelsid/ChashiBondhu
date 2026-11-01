@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/hub_screen.dart';
 import '../biosecurity/biosecurity_screen.dart';
+import '../briefing/briefing_screen.dart';
 import '../disease/common/report_list.dart';
 import '../disease/crop/crop_check_start_screen.dart';
 import '../disease/fish/fish_check_start_screen.dart';
@@ -74,6 +75,13 @@ final List<HomeFeature> homeFeatures = [
           icon: Icons.storefront,
           color: const Color(0xFF00897B),
           builder: (_) => const MarketScreen(),
+        ),
+        HubOption(
+          label: 'খবর ও তথ্য',
+          subtitle: 'কৃষি খবর, এই মাসের কাজ',
+          icon: Icons.newspaper,
+          color: const Color(0xFF3949AB),
+          builder: (_) => const BriefingScreen(),
         ),
       ],
     ),

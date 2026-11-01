@@ -26,9 +26,14 @@ void main() {
     test('sizes and links are correct', () {
       expect(fish.problems.length, 15);
       expect(fish.symptoms.length, 10);
-      expect(crop.problems.length, 12);
-      expect(crop.crops.map((c) => c.id),
+      expect(crop.problems.length, greaterThanOrEqualTo(16));
+      expect(crop.crops.take(7).map((c) => c.id),
           ['dhan', 'alu', 'morich', 'begun', 'lau', 'tomato', 'peyaj']);
+      expect(crop.crops.length, greaterThanOrEqualTo(15));
+      // Every crop has at least one problem to check.
+      for (final c in crop.crops) {
+        expect(crop.problems.any((p) => p.crops.contains(c.id)), isTrue, reason: c.id);
+      }
       for (final lib in [fish, crop]) {
         for (final p in lib.problems) {
           for (final s in p.weights.keys) {

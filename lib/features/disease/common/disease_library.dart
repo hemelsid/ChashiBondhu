@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart' show rootBundle;
+import '../../../core/remote/remote_data.dart';
 
 /// Which check: fish (PukurBondhu) or crop.
 enum DiseaseKind {
@@ -167,10 +167,40 @@ class DiseaseLibrary {
 
   static final Map<DiseaseKind, Future<DiseaseLibrary>> _cache = {};
 
-  /// Loads once from the bundled asset (works offline).
+  /// File name in assets/data (also the online file name).
+  static String fileOf(DiseaseKind kind) => kind.asset.split('/').last;
+
+  /// Words that must never appear (doses / units). Same rule as the tests.
+  static const bannedText = ['mg', 'ml', 'ppm', 'মিলি', 'মিগ্রা'];
+
+  /// Safety check for a downloaded library: parses, links are complete,
+  /// every problem has advice, and no dose units.
+  static bool isSafe(DiseaseKind kind, String text) {
+    try {
+      final lower = text.toLowerCase();
+      if (bannedText.any(lower.contains)) return false;
+      final lib = DiseaseLibrary.fromJson(kind, jsonDecode(text) as Map<String, dynamic>);
+      if (lib.problems.isEmpty || lib.symptoms.isEmpty) return false;
+      for (final p in lib.problems) {
+        if (p.korben.isEmpty || p.korbenNa.isEmpty || p.officer.isEmpty) return false;
+        if (p.weights.keys.any((s) => lib.symptom(s) == null)) return false;
+      }
+      return kind == DiseaseKind.fish || lib.crops.isNotEmpty;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Newest checked copy (downloaded) if available, else the bundled one.
+  /// Loaded once per app start.
   static Future<DiseaseLibrary> load(DiseaseKind kind) {
     return _cache.putIfAbsent(kind, () async {
-      final text = await rootBundle.loadString(kind.asset);
+      final file = fileOf(kind);
+      final remote = RemoteData.text(file);
+      if (remote != null && isSafe(kind, remote)) {
+        return DiseaseLibrary.fromJson(kind, jsonDecode(remote) as Map<String, dynamic>);
+      }
+      final text = await RemoteData.asset(file);
       return DiseaseLibrary.fromJson(kind, jsonDecode(text) as Map<String, dynamic>);
     });
   }

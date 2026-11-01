@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../core/remote/remote_data.dart';
 import '../../core/theme/app_colors.dart';
+import '../briefing/briefing_screen.dart';
+import '../contacts/contacts_screen.dart';
 import '../settings/settings_screen.dart';
 import '../smart/smart_screen.dart';
 import 'home_features.dart';
@@ -25,6 +28,9 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 10),
               // Smart alerts strip (not a 7th card): opens "আজকের কাজ".
               const SmartBanner(),
+              const SizedBox(height: 8),
+              // Rotating headlines / weather / this month's work.
+              const HeadlineTicker(),
               const SizedBox(height: 10),
               Expanded(
                 child: Column(
@@ -59,44 +65,105 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 56,
-          height: 56,
-          decoration: const BoxDecoration(
-            color: AppColors.primary,
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(Icons.agriculture, color: Colors.white, size: 34),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(14),
+          child: Image.asset('assets/images/logo.png', width: 56, height: 56),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 10),
         const Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('চাষিবন্ধু',
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w900,
-                      color: AppColors.primary,
-                      height: 1.1)),
-              Text('চাষির পাশে, সব সময়',
-                  style: TextStyle(fontSize: 17, color: AppColors.textMuted)),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text('চাষিবন্ধু',
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w900,
+                        color: AppColors.primary,
+                        height: 1.1)),
+              ),
+              _OnlineChip(),
             ],
           ),
         ),
-        SizedBox(
-          width: 60,
-          height: 60,
-          child: IconButton(
-            tooltip: 'সেটিংস',
-            iconSize: 34,
-            color: AppColors.textMuted,
-            icon: const Icon(Icons.settings),
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => const SettingsScreen())),
-          ),
+        _HeaderButton(
+          tooltip: 'সাহায্য ও যোগাযোগ',
+          icon: Icons.support_agent,
+          page: ContactsScreen(),
         ),
+        _HeaderButton(tooltip: 'সেটিংস', icon: Icons.settings, page: SettingsScreen()),
       ],
+    );
+  }
+}
+
+class _HeaderButton extends StatelessWidget {
+  const _HeaderButton({required this.tooltip, required this.icon, required this.page});
+
+  final String tooltip;
+  final IconData icon;
+  final Widget page;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 54,
+      height: 56,
+      child: IconButton(
+        tooltip: tooltip,
+        iconSize: 32,
+        color: AppColors.textMuted,
+        icon: Icon(icon),
+        onPressed: () =>
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => page)),
+      ),
+    );
+  }
+}
+
+/// "● অনলাইন" / "● অফলাইন — সব কাজ চলবে". Tap to look for new data.
+class _OnlineChip extends StatelessWidget {
+  const _OnlineChip();
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<OnlineState>(
+      valueListenable: RemoteData.state,
+      builder: (context, state, _) {
+        final (Color dot, String text) = switch (state) {
+          OnlineState.online => (AppColors.ok, 'অনলাইন · তথ্য হালনাগাদ'),
+          OnlineState.checking => (AppColors.warn, 'হালনাগাদ খোঁজা হচ্ছে…'),
+          OnlineState.offline => (AppColors.textMuted, 'অফলাইন · সব কাজ চলবে'),
+          OnlineState.unknown => (AppColors.textMuted, 'চাষির পাশে, সব সময়'),
+        };
+        return InkWell(
+          onTap: () => RemoteData.refresh(force: true),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (state != OnlineState.unknown) ...[
+                  Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(color: dot, shape: BoxShape.circle),
+                  ),
+                  const SizedBox(width: 6),
+                ],
+                Flexible(
+                  child: Text(text,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 15, color: AppColors.textMuted)),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

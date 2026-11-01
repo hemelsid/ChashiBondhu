@@ -78,7 +78,7 @@ class FishCheckStartScreen extends StatelessWidget {
                                       style: const TextStyle(
                                           fontSize: 21, fontWeight: FontWeight.bold)),
                                   Text(
-                                      '${p.species.label} · ${Bn.number(p.areaShotok)} শতক',
+                                      '${p.speciesLabel} · ${Bn.number(p.areaShotok)} শতক',
                                       style: const TextStyle(
                                           fontSize: 16, color: AppColors.textMuted)),
                                 ],

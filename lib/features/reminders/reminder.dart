@@ -29,6 +29,17 @@ const Map<FishSpecies, int> kCultureDays = {
   FishSpecies.katla: 300,
   FishSpecies.mrigel: 300,
   FishSpecies.chingri: 150,
+  FishSpecies.shing: 180,
+  FishSpecies.magur: 180,
+  FishSpecies.koi: 120,
+  FishSpecies.pabda: 180,
+  FishSpecies.gulsha: 180,
+  FishSpecies.sharpunti: 150,
+  FishSpecies.silverCarp: 300,
+  FishSpecies.grassCarp: 300,
+  FishSpecies.commonCarp: 300,
+  FishSpecies.bighead: 300,
+  FishSpecies.kalibaus: 300,
 };
 
 DateTime estimateHarvest(FishSpecies species, DateTime stockDate, {DateTime? now}) {

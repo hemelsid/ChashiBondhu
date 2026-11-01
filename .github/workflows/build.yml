@@ -1,12 +1,13 @@
 name: Build APK
 
 # Every push to main: analyze + test, build the Android APKs and the PC
-# (Windows) app, then publish ONE release (v0.3.<run>) with all files.
+# (Windows) app, then publish ONE release (v0.4.<run>) with all files.
 # Old releases are never deleted.
 on:
   push:
     branches: [main]
-    paths-ignore: ['**.md', 'docs/**']
+    # Data files update phones/PCs online by themselves — no new APK needed.
+    paths-ignore: ['**.md', 'docs/**', 'assets/data/**']
   workflow_dispatch:
 
 permissions:
@@ -15,7 +16,7 @@ permissions:
 env:
   # Pinned so builds are repeatable. Change on purpose, not by accident.
   FLUTTER_VERSION: '3.27.4'
-  APP_VERSION: 0.3.${{ github.run_number }}
+  APP_VERSION: 0.4.${{ github.run_number }}
 
 jobs:
   android:

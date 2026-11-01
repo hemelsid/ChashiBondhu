@@ -10,11 +10,16 @@ import '../../../core/utils/phone_call.dart';
 import '../../../core/widgets/big_button.dart';
 import '../../../core/widgets/confirm_dialog.dart';
 import '../../../core/widgets/disclaimer_box.dart';
+import '../../contacts/contacts_screen.dart';
+import '../crop/crop_check_start_screen.dart';
+import '../fish/fish_check_start_screen.dart';
+import 'check_draft.dart';
 import 'disease_library.dart';
 import 'disease_matcher.dart';
 import 'disease_report.dart';
 import 'disease_report_repository.dart';
 import 'kind_ui.dart';
+import 'photo_step_screen.dart';
 
 /// Shows a saved report: disclaimer, top 2–3 likely problems with simple
 /// advice. Used right after a check and when opening it from the diary.
@@ -90,11 +95,51 @@ class DiseaseResultScreen extends StatelessWidget {
                     initiallyExpanded: i == 0,
                   ),
               const SizedBox(height: 20),
+              // Several checks in a row: same pond/crop again, or another one.
+              if (!fromDiary) ...[
+                BigButton(
+                  label: 'আবার চেক করুন: ${report.subject}',
+                  icon: Icons.add_a_photo,
+                  color: kind.color,
+                  onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (_) => PhotoStepScreen(
+                      draft: CheckDraft(
+                        kind: kind,
+                        pondId: report.pondId,
+                        pondName: report.pondName,
+                        cropId: report.cropId,
+                        cropLabel: report.cropLabel,
+                      ),
+                    ),
+                  )),
+                ),
+                const SizedBox(height: 12),
+                BigButton(
+                  label: kind == DiseaseKind.fish ? 'অন্য পুকুরের মাছ চেক' : 'অন্য ফসল চেক',
+                  icon: Icons.playlist_add,
+                  outlined: true,
+                  color: kind.color,
+                  onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (_) => kind == DiseaseKind.fish
+                        ? const FishCheckStartScreen()
+                        : const CropCheckStartScreen(),
+                  )),
+                ),
+                const SizedBox(height: 12),
+              ],
               BigButton(
                 label: hasSavedOfficer ? 'অফিসারকে ফোন করুন' : AppInfo.helplineLabel,
                 icon: Icons.call,
                 color: AppColors.primary,
                 onPressed: () => callNumber(context, _officerPhone),
+              ),
+              const SizedBox(height: 12),
+              BigButton(
+                label: 'আরও যোগাযোগ (অফিস, হেল্পলাইন)',
+                icon: Icons.support_agent,
+                outlined: true,
+                onPressed: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => const ContactsScreen())),
               ),
               const SizedBox(height: 12),
               BigButton(

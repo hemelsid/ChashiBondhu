@@ -133,7 +133,7 @@ class _PondCard extends StatelessWidget {
                         style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 2),
                     Text(
-                      '${p.species.label} · ${Bn.count(summary.currentStock)}টি · '
+                      '${p.speciesLabel} · ${Bn.count(summary.currentStock)}টি · '
                       '${Bn.number(p.areaShotok)} শতক',
                       style: const TextStyle(fontSize: 16, color: AppColors.textMuted),
                     ),

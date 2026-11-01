@@ -178,7 +178,7 @@ class _SummaryCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(p.species.label,
+                    Text(p.speciesLabel,
                         style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                     Text('${Bn.number(p.areaShotok, maxDecimals: 2)} শতক',
                         style: const TextStyle(fontSize: 17, color: AppColors.textMuted)),

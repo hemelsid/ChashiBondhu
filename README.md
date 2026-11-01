@@ -17,7 +17,7 @@
 
 ---
 
-Offline-first Flutter app for small fish and crop farmers in Bangladesh. Bangla only, big buttons, no login. Version 0.3 — Android phone and Windows PC.
+Offline-first Flutter app for small fish and crop farmers in Bangladesh. Bangla only, big buttons, no login. Version 0.4 — Android phone and Windows PC, online + offline.
 
 | Home card | What's inside |
 |---|---|
@@ -36,6 +36,24 @@ missing daily logs · dead fish rising (last 3 days vs previous 3) or many dead 
 average weight not updated for 15+ days · harvest within 14 days · recent disease check with "বেশি" ·
 weather risk from the saved forecast · low biosecurity score · due/overdue reminders (on PC these replace phone alerts).
 Each item has a button that opens the right screen. Pure Dart, covered by `test/smart_backup_test.dart`.
+
+## Online + offline data (auto-updating)
+`lib/core/remote/remote_data.dart` downloads `assets/data/*.json` from this repo's `main` branch
+(raw.githubusercontent.com, ETag, every 3 h, on resume, or "এখনই হালনাগাদ") and caches it in Hive.
+Each file is checked first (`lib/app_data.dart`): disease libraries must parse, link correctly and contain no dose units;
+contacts must have valid numbers. Bad files are ignored. Offline, the last good copy or the bundled copy is used.
+
+**To update everyone's app without a new APK:** edit on GitHub —
+`contacts.json` (helplines, organisations, `officers` by `district_id`), `market_prices.json` (set `"sample": false` for real prices),
+`fish_diseases.json` / `crop_diseases.json` (add problems/crops; keep the safety rules). These edits don't trigger an APK build.
+`briefing.json` is rewritten every 6 h by `.github/workflows/briefing.yml` (`tool/make_briefing.py`: Google News RSS
+for Bangla agriculture/fish/market/weather — titles, source, time and link only).
+
+## Contacts
+Helplines verified from government portals (16123 কৃষি কল সেন্টার, 333, 1090 weather/disaster IVR, 999).
+District office sites follow the national portal pattern `https://{fisheries|dae|dls}.<district>.gov.bd`
+(older spellings for a few districts, see `DistrictOffices`). Officer numbers are **not invented**: add verified ones to
+`contacts.json → officers`, or farmers save their own in the app.
 
 ## Phone ↔ PC without internet
 Settings → **ব্যাকআপ ও এক্সেল ফাইল**: a JSON backup file (shared on phone, "save as" on PC) that another device imports
