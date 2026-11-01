@@ -4,6 +4,7 @@ import '../../core/storage/app_settings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/bangla.dart';
 import '../../core/utils/ids.dart';
+import '../../core/utils/platform_info.dart';
 import '../../core/widgets/big_button.dart';
 import '../../core/widgets/choice_grid.dart';
 import '../../core/widgets/section_title.dart';
@@ -94,9 +95,11 @@ class _ReminderFormScreenState extends State<ReminderFormScreen> {
     final scheduled = await ReminderRepository.instance.add(reminder);
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(scheduled
-          ? 'রিমাইন্ডার রাখা হয়েছে ✓'
-          : 'রাখা হয়েছে, কিন্তু সময় পার হয়ে গেছে — ফোনে জানানো হবে না'),
+      content: Text(!PlatformInfo.hasReminderAlerts
+          ? 'রাখা হয়েছে ✓ সময় হলে "আজকের কাজ" তালিকায় দেখাবে'
+          : scheduled
+              ? 'রিমাইন্ডার রাখা হয়েছে ✓'
+              : 'রাখা হয়েছে, কিন্তু সময় পার হয়ে গেছে — ফোনে জানানো হবে না'),
     ));
     Navigator.of(context).pop();
   }

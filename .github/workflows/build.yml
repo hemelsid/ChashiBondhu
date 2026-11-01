@@ -1,7 +1,8 @@
 name: Build APK
 
-# Every push to main: analyze, test, build the Android APKs and publish ONE
-# release (v0.2.<run>) with all files. Old releases are never deleted.
+# Every push to main: analyze + test, build the Android APKs and the PC
+# (Windows) app, then publish ONE release (v0.3.<run>) with all files.
+# Old releases are never deleted.
 on:
   push:
     branches: [main]
@@ -14,6 +15,7 @@ permissions:
 env:
   # Pinned so builds are repeatable. Change on purpose, not by accident.
   FLUTTER_VERSION: '3.27.4'
+  APP_VERSION: 0.3.${{ github.run_number }}
 
 jobs:
   android:
@@ -50,7 +52,7 @@ jobs:
           KEYSTORE_PASSWORD: chashibondhu
         run: >
           flutter build apk --release --split-per-abi
-          --build-name=0.2.${{ github.run_number }}
+          --build-name=${{ env.APP_VERSION }}
           --build-number=${{ github.run_number }}
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
@@ -84,19 +86,90 @@ jobs:
           name: android
           path: out/*.apk
 
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Prepare Windows project
+        run: |
+          flutter create --project-name chashibondhu --org com.chashibondhu --platforms windows .
+          dart run tool/patch_windows.dart
+          flutter pub get
+
+      - name: Build PC app
+        run: >
+          flutter build windows --release
+          --build-name=${{ env.APP_VERSION }}
+          --build-number=${{ github.run_number }}
+          --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+          --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+
+      - name: Add Visual C++ runtime (so it runs on PCs without it)
+        shell: pwsh
+        run: |
+          $app = "build/windows/x64/runner/Release"
+          foreach ($d in "msvcp140.dll","vcruntime140.dll","vcruntime140_1.dll") {
+            Copy-Item "C:\Windows\System32\$d" $app -ErrorAction SilentlyContinue
+          }
+          Get-ChildItem $app
+
+      - name: Smoke test (app starts, shows Home, closes)
+        shell: pwsh
+        run: |
+          $p = Start-Process build/windows/x64/runner/Release/chashibondhu.exe -ArgumentList "--selftest" -PassThru
+          if (-not $p.WaitForExit(90000)) { $p.Kill(); throw "App did not close by itself" }
+          "exit code: $($p.ExitCode)"
+          if ($p.ExitCode -ne 0) { throw "App crashed on start" }
+
+      - name: Installer and portable zip
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force out | Out-Null
+          choco install innosetup -y --no-progress | Out-Null
+          $iscc = Get-ChildItem "C:\Program Files*\Inno Setup*\ISCC.exe" | Select-Object -First 1
+          & $iscc.FullName "/DAppVersion=${{ env.APP_VERSION }}" tool/installer.iss
+          if ($LASTEXITCODE -ne 0) { throw "Installer build failed" }
+          Compress-Archive build/windows/x64/runner/Release/* out/Chashibondhu-Windows-portable.zip
+          Get-ChildItem out
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: out/*
+
+  release:
+    needs: [android, windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: out
+          merge-multiple: true
+      - run: ls -lh out
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.2.${{ github.run_number }}
-          name: চাষিবন্ধু v0.2.${{ github.run_number }}
+          tag_name: v${{ env.APP_VERSION }}
+          name: চাষিবন্ধু v${{ env.APP_VERSION }}
           make_latest: true
-          files: out/*.apk
+          files: out/*
           body: |
-            ### 📱 কোন ফাইলটা নামাবেন?
-            - `Chashibondhu-armeabi-v7a.apk` — কম দামি বা পুরনো ফোন (Android ৮+) ✅
+            ### 📱 ফোন (Android ৮+)
             - `Chashibondhu-arm64-v8a.apk` — ২০১৮ সালের পরের বেশিরভাগ ফোন ✅
-            - `Chashibondhu-x86_64.apk` — ইমুলেটর / কম্পিউটার
+            - `Chashibondhu-armeabi-v7a.apk` — কম দামি বা পুরনো ফোন
+            - `Chashibondhu-x86_64.apk` — ইমুলেটর
 
-            কোনটা লাগবে না জানলে প্রথমে arm64 দিন; ইনস্টল না হলে armeabi-v7a দিন।
+            ### 💻 কম্পিউটার (Windows ১০/১১, ৬৪-বিট)
+            - `Chashibondhu-Windows-Setup.exe` — ইনস্টলার (অ্যাডমিন লাগে না, ডেস্কটপে আইকন বসায়) ✅
+            - `Chashibondhu-Windows-portable.zip` — ইনস্টল ছাড়া: আনজিপ করে `chashibondhu.exe` চালান
+
             নতুন সংস্করণ পুরনোটার উপরেই ইনস্টল হয়, তথ্য মুছে যায় না।
+            ফোনের তথ্য কম্পিউটারে নিতে: সেটিংস → ব্যাকআপ ও এক্সেল ফাইল।
             পরীক্ষার চেকলিস্ট: TESTING_BN.md

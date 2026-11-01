@@ -9,11 +9,15 @@
 3. খুলুন → "অজানা অ্যাপ ইনস্টল" অনুমতি দিন → **ইনস্টল**।
 4. পরের সংস্করণ পুরনোটার উপরেই ইনস্টল হয়, তথ্য মুছে যায় না।
 
+## ইনস্টল (কম্পিউটারে, Windows ১০/১১)
+একই Release থেকে `Chashibondhu-Windows-Setup.exe` নামিয়ে চালান (অ্যাডমিন লাগে না)। ইনস্টল ছাড়া চালাতে `Chashibondhu-Windows-portable.zip` আনজিপ করে `chashibondhu.exe` খুলুন।
+ফোনের তথ্য কম্পিউটারে আনতে: ফোনে **সেটিংস → ব্যাকআপ ও এক্সেল ফাইল → ব্যাকআপ ফাইল বানান**, ফাইলটা কম্পিউটারে পাঠান, কম্পিউটারে **ফাইল থেকে আনুন**।
+
 প্রতিটি সংস্করণ **Releases**-এ থেকে যায়। পরীক্ষার চেকলিস্ট: [TESTING_BN.md](TESTING_BN.md)
 
 ---
 
-Offline-first Flutter app for small fish and crop farmers in Bangladesh. Bangla only, big buttons, no login. Version 0.2.0.
+Offline-first Flutter app for small fish and crop farmers in Bangladesh. Bangla only, big buttons, no login. Version 0.3 — Android phone and Windows PC.
 
 | Home card | What's inside |
 |---|---|
@@ -24,7 +28,23 @@ Offline-first Flutter app for small fish and crop farmers in Bangladesh. Bangla 
 | রোগ চেক | **মাছের রোগ (পুকুরবন্ধু)** · **ফসলের রোগ** · past reports |
 | ডায়েরি | **Reminders** · **Biosecurity checklist** · reports · pond records |
 
-⚙ on Home opens **Settings**.
+⚙ on Home opens **Settings**. The strip under the title is **আজকের কাজ** (smart alerts, below).
+
+## Smart features (offline, rule-based)
+`lib/features/smart/smart_rules.dart` reads the farmer's own records and lists what needs doing today:
+missing daily logs · dead fish rising (last 3 days vs previous 3) or many dead · feeding >30% above the calculator ·
+average weight not updated for 15+ days · harvest within 14 days · recent disease check with "বেশি" ·
+weather risk from the saved forecast · low biosecurity score · due/overdue reminders (on PC these replace phone alerts).
+Each item has a button that opens the right screen. Pure Dart, covered by `test/smart_backup_test.dart`.
+
+## Phone ↔ PC without internet
+Settings → **ব্যাকআপ ও এক্সেল ফাইল**: a JSON backup file (shared on phone, "save as" on PC) that another device imports
+(merge: newer copy wins, nothing deleted, photos not included), and Excel-ready CSV (UTF-8 BOM) of pond logs and disease reports.
+
+## PC (Windows) build
+CI job `windows` runs `flutter create --platforms windows` + `tool/patch_windows.dart` (Bangla title, icon), builds,
+bundles the VC++ runtime, runs a `--selftest` smoke test, then makes an Inno Setup installer and a portable zip.
+On wide windows the app keeps its phone layout in a centered 720 px column.
 
 - Bangla testing checklist + APK steps: **[TESTING_BN.md](TESTING_BN.md)**
 - Database: [supabase/schema.sql](supabase/schema.sql)

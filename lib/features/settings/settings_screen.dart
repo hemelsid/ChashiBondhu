@@ -15,6 +15,7 @@ import '../../core/utils/photo_store.dart';
 import '../../core/widgets/big_button.dart';
 import '../../core/widgets/confirm_dialog.dart';
 import '../../core/widgets/section_title.dart';
+import '../backup/backup_screen.dart';
 import '../pond/ui/pond_list_screen.dart';
 import '../weather/district_picker_screen.dart';
 
@@ -83,6 +84,19 @@ class SettingsScreen extends StatelessWidget {
               ),
 
               // ---- Backup ----
+              const SectionTitle('ফাইলে তথ্য আনা-নেওয়া', icon: Icons.sync_alt),
+              BigButton(
+                label: 'ব্যাকআপ ও এক্সেল ফাইল',
+                icon: Icons.folder_open,
+                outlined: true,
+                onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const BackupScreen())),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 4, left: 4),
+                child: Text('ফোন থেকে কম্পিউটারে, বা নতুন ফোনে — ইন্টারনেট ছাড়াই',
+                    style: TextStyle(fontSize: 15, color: AppColors.textMuted)),
+              ),
               const SectionTitle('অনলাইন ব্যাকআপ', icon: Icons.cloud),
               const _SyncTile(),
 

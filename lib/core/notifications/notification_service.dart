@@ -3,6 +3,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
 
+import '../utils/platform_info.dart';
+
 /// Offline local reminders (flutter_local_notifications 17.x).
 /// Time zone is fixed to Bangladesh, so no extra time-zone plugin is needed.
 class NotificationService {
@@ -24,7 +26,8 @@ class NotificationService {
   );
 
   Future<void> init() async {
-    if (_ready) return;
+    // The plugin version used here has no Windows support: do nothing on PC.
+    if (_ready || !PlatformInfo.hasReminderAlerts) return;
     try {
       tzdata.initializeTimeZones();
       tz.setLocalLocation(tz.getLocation('Asia/Dhaka'));
@@ -39,6 +42,7 @@ class NotificationService {
 
   /// Android 13+ asks the farmer once. Returns false if refused.
   Future<bool> requestPermission() async {
+    if (!PlatformInfo.hasReminderAlerts) return false;
     await init();
     final android = _plugin.resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>();

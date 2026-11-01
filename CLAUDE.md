@@ -1,16 +1,19 @@
 # Notes for AI assistants working on this repo
 
-- This repo (`hemelsid/Chashibondhu`) is the single home of the চাষিবন্ধু app (Flutter, Android).
+- This repo (`hemelsid/Chashibondhu`) is the single home of the চাষিবন্ধু app (Flutter): Android phone + PC (Windows). Each Release contains both.
   Commit and push every change here so the owner always has the latest code and APKs.
 - After each change: update `CHANGELOG.md`, push to `main`, wait for the "Build APK" workflow,
   and give the owner the new Release files.
 - The owner can't run builds locally; **GitHub Actions is the build machine**.
-  The `android/` folder is generated in CI by `flutter create` + `tool/patch_android.dart`
-  (not committed). Put Android changes in the patch script.
+  The `android/` and `windows/` folders are generated in CI by `flutter create` +
+  `tool/patch_android.dart` / `tool/patch_windows.dart` (not committed). Put platform changes
+  in the patch scripts. The PC installer is `tool/installer.iss` (Inno Setup).
+- Keep phone and PC in step: same features; use `PlatformInfo` for differences
+  (no camera and no reminder alerts on PC — "আজকের কাজ" shows due reminders there).
 - Flutter version is pinned in `.github/workflows/build.yml` (`FLUTTER_VERSION`).
 - Keep the committed signing key `keystore/release.jks` (password `chashibondhu`);
   changing it forces users to uninstall and lose their offline data.
-- Keep every APK: never delete a Release. Each build adds a new one (`v0.2.<run>`); newest is Latest.
+- Keep every APK: never delete a Release. Each build adds a new one (`v0.3.<run>`); newest is Latest.
 - **All in-app text must be Bangla script** (no English-only labels, no Banglish).
   Design rules: one screen = one job, big buttons, max 6 Home cards, offline-first, no login,
   green = ঠিক আছে / yellow = সতর্ক / red = বিপদ.

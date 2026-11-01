@@ -1,7 +1,7 @@
 name: chashibondhu
 description: "চাষিবন্ধু — চাষির পাশে, সব সময়"
 publish_to: 'none'
-version: 0.2.0+2
+version: 0.3.0+3
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -27,6 +27,9 @@ dependencies:
   supabase_flutter: ^2.8.0
   # Phone call to officer / helpline.
   url_launcher: ^6.3.0
+  # Backup / Excel files: open & save on PC, share on phone.
+  file_selector: ^1.0.3
+  share_plus: ^10.1.4
 
 dev_dependencies:
   flutter_test:

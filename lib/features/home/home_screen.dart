@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../settings/settings_screen.dart';
+import '../smart/smart_screen.dart';
 import 'home_features.dart';
 
 /// 6 big cards in a 2 × 3 grid that always fits the screen (no scrolling),
@@ -21,7 +22,10 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               const _Header(),
-              const SizedBox(height: 12),
+              const SizedBox(height: 10),
+              // Smart alerts strip (not a 7th card): opens "আজকের কাজ".
+              const SmartBanner(),
+              const SizedBox(height: 10),
               Expanded(
                 child: Column(
                   children: [

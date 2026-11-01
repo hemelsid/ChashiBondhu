@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/photo_store.dart';
+import '../../../core/utils/platform_info.dart';
 import '../../../core/widgets/big_button.dart';
 import 'check_draft.dart';
 import 'kind_ui.dart';
@@ -111,19 +112,22 @@ class _PhotoStepScreenState extends State<PhotoStepScreen> {
               const SizedBox(height: 12),
               Row(
                 children: [
-                  Expanded(
-                    child: _PhotoButton(
-                      icon: Icons.photo_camera,
-                      label: 'ক্যামেরা',
-                      color: kind.color,
-                      onTap: _busy ? null : () => _pick(true),
+                  // PC has no camera: only "pick a photo file" there.
+                  if (PlatformInfo.hasCamera) ...[
+                    Expanded(
+                      child: _PhotoButton(
+                        icon: Icons.photo_camera,
+                        label: 'ক্যামেরা',
+                        color: kind.color,
+                        onTap: _busy ? null : () => _pick(true),
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 12),
+                    const SizedBox(width: 12),
+                  ],
                   Expanded(
                     child: _PhotoButton(
                       icon: Icons.photo_library,
-                      label: 'গ্যালারি',
+                      label: PlatformInfo.hasCamera ? 'গ্যালারি' : 'ফাইল থেকে ছবি',
                       color: kind.color,
                       onTap: _busy ? null : () => _pick(false),
                     ),

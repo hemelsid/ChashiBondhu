@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text.dart';
 import '../../core/utils/bangla.dart';
+import '../../core/utils/platform_info.dart';
 import '../../core/widgets/big_button.dart';
 import '../../core/widgets/confirm_dialog.dart';
 import 'reminder.dart';
@@ -42,8 +43,12 @@ class ReminderListScreen extends StatelessWidget {
                     : ListView(
                         padding: const EdgeInsets.all(16),
                         children: [
-                          const Text('কাজ হলে টিক দিন। মুছতে চেপে ধরে রাখুন।',
-                              style: TextStyle(fontSize: 16, color: AppColors.textMuted)),
+                          Text(
+                              PlatformInfo.hasReminderAlerts
+                                  ? 'কাজ হলে টিক দিন। মুছতে চেপে ধরে রাখুন।'
+                                  : 'কম্পিউটারে শব্দ করে জানানো হয় না — সময় হলে হোমের "আজকের কাজ"-এ দেখাবে। '
+                                      'কাজ হলে টিক দিন, মুছতে চেপে ধরে রাখুন (মাউসে ক্লিক করে ধরে রাখুন)।',
+                              style: const TextStyle(fontSize: 16, color: AppColors.textMuted)),
                           for (final r in list) _ReminderTile(reminder: r),
                         ],
                       ),

@@ -2,7 +2,7 @@
 class AppInfo {
   AppInfo._();
 
-  static const version = '০.২.০';
+  static const version = '০.৩.০';
   static const name = 'চাষিবন্ধু';
   static const tagline = 'চাষির পাশে, সব সময়';
 
