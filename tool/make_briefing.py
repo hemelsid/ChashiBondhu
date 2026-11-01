@@ -32,10 +32,11 @@ KEYWORDS = {
     "আবহাওয়া": ["আবহাওয়া", "বৃষ্টি", "ঝড়", "ঘূর্ণিঝড়", "শীত", "তাপ", "বন্যা", "সংকেত", "কুয়াশা"],
 }
 # Bangla-language outlets/places from outside Bangladesh.
+# (Only names that are not ordinary Bangla words.)
 NOT_BD = [
     "ABP", "Anandabazar", "আনন্দবাজার", "Asianet", "Zee 24", "News18", "TV9", "Ei Samay",
-    "এই সময়", "Sangbad Pratidin", "সংবাদ প্রতিদিন", "Bartaman", "বর্তমান", "Hindustan Times",
-    "Aajkaal", "আজকাল", "Kolkata", "কলকাতা", "পশ্চিমবঙ্গ", "West Bengal", "India Today",
+    "Sangbad Pratidin", "Bartaman", "Hindustan Times", "Aajkaal", "Kolkata", "কলকাতা",
+    "পশ্চিমবঙ্গ", "West Bengal", "India Today",
 ]
 PER_TOPIC = 6
 MAX_ITEMS = 20
