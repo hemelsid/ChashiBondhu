@@ -68,6 +68,17 @@ jobs:
             if [ "$size" -gt 41943040 ]; then echo "::error::$f is larger than 40 MB"; exit 1; fi
           done
 
+      - name: Check APKs are signed with keystore/release.jks
+        run: |
+          SIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -1)
+          want=$(keytool -list -v -keystore keystore/release.jks -storepass chashibondhu -alias chashibondhu \
+                 | grep 'SHA256:' | awk '{print $2}' | tr -d ':' | tr 'A-F' 'a-f')
+          for f in out/*.apk; do
+            got=$("$SIGNER" verify --print-certs "$f" | grep 'SHA-256 digest' | head -1 | awk '{print $NF}')
+            echo "$f: $got"
+            if [ "$got" != "$want" ]; then echo "::error::$f is not signed with the repo key"; exit 1; fi
+          done
+
       - uses: actions/upload-artifact@v4
         with:
           name: android

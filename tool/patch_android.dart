@@ -64,10 +64,20 @@ void _signing() {
     _fail('buildTypes not found in ${f.path}');
   }
   s = s.replaceFirst(RegExp(r'\n\s*buildTypes\s*\{'), '\n$block');
+  // Point the release build at our key. Templates differ by Flutter version:
+  //   Kotlin:  signingConfig = signingConfigs.getByName("debug")
+  //   Groovy:  signingConfig = signingConfigs.debug   (or without "=")
+  final before = s;
   s = isKts
-      ? s.replaceFirst('signingConfig = signingConfigs.getByName("debug")',
+      ? s.replaceFirst(
+          RegExp(r'signingConfig\s*=\s*signingConfigs\.getByName\("debug"\)'),
           'signingConfig = signingConfigs.getByName("release")')
-      : s.replaceFirst('signingConfig signingConfigs.debug', 'signingConfig signingConfigs.release');
+      : s.replaceFirst(RegExp(r'signingConfig\s*=?\s*signingConfigs\.debug'),
+          'signingConfig = signingConfigs.release');
+  if (s == before) {
+    _fail('Could not switch the release build to keystore/release.jks in ${f.path}. '
+        'APKs would be signed with a throw-away debug key.');
+  }
   f.writeAsStringSync(s);
 }
 
