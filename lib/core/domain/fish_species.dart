@@ -1,8 +1,7 @@
 /// Fish species supported in the app. Pure Dart (no Flutter import) so the
 /// calculators and tests can use it directly.
 ///
-/// `photo` is reserved for real species photos later
-/// (e.g. assets/images/species/pangas.jpg). Until then the UI uses [emoji].
+/// The UI uses [emoji] until real species photos are added.
 enum FishSpecies {
   pangas('পাঙাশ', '🐟', 0xFF607D8B),
   tilapia('তেলাপিয়া', '🐟', 0xFF78909C),
@@ -11,12 +10,11 @@ enum FishSpecies {
   mrigel('মৃগেল', '🐟', 0xFFFF8A65),
   chingri('চিংড়ি', '🦐', 0xFFE57373);
 
-  const FishSpecies(this.label, this.emoji, this.tint, {this.photo});
+  const FishSpecies(this.label, this.emoji, this.tint);
 
   final String label;
   final String emoji;
   final int tint;
-  final String? photo;
 
   bool get isCarp => this == rui || this == katla || this == mrigel;
 

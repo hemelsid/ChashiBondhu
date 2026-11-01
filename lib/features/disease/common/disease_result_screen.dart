@@ -141,7 +141,7 @@ class _ReportHeader extends StatelessWidget {
                   width: 92,
                   height: 92,
                   child: hasPhoto
-                      ? Image.file(File(photo!), fit: BoxFit.cover, cacheWidth: 300)
+                      ? Image.file(File(photo), fit: BoxFit.cover, cacheWidth: 300)
                       : Container(
                           color: AppColors.background,
                           child: Icon(report.kind.icon,

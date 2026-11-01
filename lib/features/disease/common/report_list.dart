@@ -42,7 +42,7 @@ class ReportTile extends StatelessWidget {
                     width: 64,
                     height: 64,
                     child: hasPhoto
-                        ? Image.file(File(photo!), fit: BoxFit.cover, cacheWidth: 200)
+                        ? Image.file(File(photo), fit: BoxFit.cover, cacheWidth: 200)
                         : Container(
                             color: AppColors.background,
                             child: Icon(report.kind.icon, color: report.kind.color, size: 34),
