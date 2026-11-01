@@ -24,6 +24,19 @@ SOURCES = [
     ("বাজার", "বাজার দর চাল সবজি"),
     ("আবহাওয়া", "আবহাওয়া সতর্কতা বৃষ্টি"),
 ]
+# A headline must contain one of its topic's words (drops off-topic news).
+KEYWORDS = {
+    "কৃষি": ["কৃষি", "কৃষক", "ফসল", "ধান", "চাষ", "সার", "বীজ", "সবজি", "আলু", "গম", "পাট"],
+    "মাছ": ["মাছ", "মৎস্য", "চিংড়ি", "পুকুর", "জেলে", "ইলিশ", "পোনা"],
+    "বাজার": ["দাম", "দর", "বাজার", "চাল", "সবজি", "মাছ", "পেঁয়াজ", "আলু", "ডিম"],
+    "আবহাওয়া": ["আবহাওয়া", "বৃষ্টি", "ঝড়", "ঘূর্ণিঝড়", "শীত", "তাপ", "বন্যা", "সংকেত", "কুয়াশা"],
+}
+# Bangla-language outlets/places from outside Bangladesh.
+NOT_BD = [
+    "ABP", "Anandabazar", "আনন্দবাজার", "Asianet", "Zee 24", "News18", "TV9", "Ei Samay",
+    "এই সময়", "Sangbad Pratidin", "সংবাদ প্রতিদিন", "Bartaman", "বর্তমান", "Hindustan Times",
+    "Aajkaal", "আজকাল", "Kolkata", "কলকাতা", "পশ্চিমবঙ্গ", "West Bengal", "India Today",
+]
 PER_TOPIC = 6
 MAX_ITEMS = 20
 MAX_AGE = timedelta(days=4)
@@ -60,6 +73,11 @@ def parse(xml: bytes, topic: str):
             except (TypeError, ValueError):
                 when = None
         if when and now - when > MAX_AGE:
+            continue
+        text = f"{title} {source}"
+        if any(x.lower() in text.lower() for x in NOT_BD):
+            continue
+        if not any(k in title for k in KEYWORDS.get(topic, [])):
             continue
         yield {
             "title": title,
