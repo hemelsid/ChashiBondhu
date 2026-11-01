@@ -36,7 +36,8 @@ KEYWORDS = {
 NOT_BD = [
     "ABP", "Anandabazar", "আনন্দবাজার", "Asianet", "Zee 24", "News18", "TV9", "Ei Samay",
     "Sangbad Pratidin", "Bartaman", "Hindustan Times", "Aajkaal", "Kolkata", "কলকাতা",
-    "পশ্চিমবঙ্গ", "West Bengal", "India Today",
+    "পশ্চিমবঙ্গ", "West Bengal", "India Today", "AajTak", "Aaj Tak", "Republic Bangla",
+    "Zee News", "Kolkata24x7", "Uttarbanga", "Sangbad Pratidin", "Eisamay",
 ]
 PER_TOPIC = 6
 MAX_ITEMS = 20
