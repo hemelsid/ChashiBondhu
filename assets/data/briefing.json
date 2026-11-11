@@ -1,27 +1,69 @@
 {
  "version": 1,
- "updated": "2026-11-11T01:17:31+00:00",
+ "updated": "2026-11-11T07:27:33+00:00",
  "items": [
   {
-   "title": "আজকের আবহাওয়া (১১ই নভেম্বর): উত্তর ভিয়েতনামে ঠান্ডা, মধ্য ভিয়েতনামে ভারী বৃষ্টি।",
+   "title": "খারাপ আবহাওয়ার কারণে মধ্য ভিয়েতনামে ১৭টি ফ্লাইট প্রভাবিত হয়েছে।",
    "source": "Vietnam.vn",
-   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPU2FDajZVRC1mZTdWQzlMZi1NM2FKX2NZU1Nqc1RMMEI5NjBQSmRtdzJUVG1vT25HQl85ZndIaGRBbmdxWW5FQVk0ZVlIRllmTF8zenV3eEtkLV96Z1RlbjZqM0kteXRsNlNkUXpQVElLWHQxSWluYnlBUnhmakoyRHRsTnUtaTJu?oc=5",
-   "published": "2026-11-11T00:45:18+00:00",
+   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQbjdoeGp3eFhFNTgzc1N0MWNabmE5eXBuOFgxVTdHbFRJWnJvV3ZiNGdVS05qb0ZUVFdmejBfOEJ3MkVPeER1YUlIN2hZWTVSZDJQak4wYUxGMUdzcUR1M3FEMXZzX1BDZTBESnZMbFJLYVBtRFRxMXZRYXNScC1CM2pDYmFyLUJzQXpHSVJTOEs?oc=5",
+   "published": "2026-11-11T06:29:57+00:00",
    "topic": "আবহাওয়া"
   },
   {
-   "title": "হাওয়াইয়ে শক্তিশালী বাতাস ও বৃষ্টির পূর্বাভাস আবহাওয়ার",
-   "source": "Dinajpur TV",
-   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1xYkVhNWpvZ0M1Rk5iaU5oR1BCVm1TeERIRWxfRm00c2UtSk1OcEtUWmFSeFZ5TFM3MGN2UW9TeEc1cmNUaDdxSGNCQVJnZkR5eHc?oc=5",
-   "published": "2026-11-10T17:41:09+00:00",
+   "title": "দুপুরের আগেই বৃষ্টির সম্ভাবনা",
+   "source": "সকালের সময়",
+   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5jTmh2WlZTMlZPUzMxeUdZZm8yV2hXQWk4UXRoMEctc2psazk0QnF1amFWVmQ3SmFZM0ZwQlNwV08zdFJHV014SUtBLTNzdXdfWTMzU2tDR0g?oc=5",
+   "published": "2026-11-11T05:55:31+00:00",
    "topic": "আবহাওয়া"
   },
   {
-   "title": "বৃষ্টি নিয়ে নতুন বার্তা আবহাওয়া অফিসের",
-   "source": "কালের কণ্ঠ",
-   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE8teGhldlJzRHpBNHo0cm0xQW5DSmZyd1JtRjBVajhvMDlpZVdqcTZWd3Q1dm5TQnROZGxQVlY3c2RvbjhxZF9JUjlOZ0V4WGptS3B2alRFdUotNm9peDkzYlFkX1VjeXJDV0lBd1FIOA?oc=5",
-   "published": "2026-11-10T16:42:44+00:00",
+   "title": "ঢাকাসহ ১৫ জেলায় তীব্র বজ্রবৃষ্টির আভাস",
+   "source": "Jugantor",
+   "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE8xaG5UNVRaSnJhVjh1czBqY01vTWQ0QjBFVUdLUE9FaUN3N01Xd1ZjNXFhQlRUQTI3Z3R0VDdvSnVXSmpkdVdsd2lFZkRiak5UVnJB?oc=5",
+   "published": "2026-11-11T04:40:30+00:00",
    "topic": "আবহাওয়া"
+  },
+  {
+   "title": "ঢাকায় আবারও বৃষ্টির পূর্বাভাস",
+   "source": "bvnews24",
+   "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1Za005TGQtakk0ajlGdVA1VlZTT2hoanhYekJiQlA3UF96WGtkRDBuQnJ4Z2xCMWgwUHBXcFNKQVYyOTdVNXNHbGtoMHRsU2JTMnZsaDFldw?oc=5",
+   "published": "2026-11-11T04:21:00+00:00",
+   "topic": "আবহাওয়া"
+  },
+  {
+   "title": "পাকিস্তানের উত্তরাঞ্চলে আজ থেকে বৃষ্টি, পাহাড়ে তুষারপাতের আশঙ্কা",
+   "source": "Bahumatrik",
+   "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBKOWd0Y1JMYkJmTDRocFFYcG5hNWlsZ2RSM2FJOGRyZDdOSk02Z1lzY0YwZjFoX1BUbnVWV0tISnEzTTJmQWZzcjRPQm4wRUw3eGM2ZVZOQQ?oc=5",
+   "published": "2026-11-11T04:07:00+00:00",
+   "topic": "আবহাওয়া"
+  },
+  {
+   "title": "ভোরেই রাজধানীতে মুষলধারে বৃষ্টি, আরও ৩ অঞ্চলে ঝড়ের আভাস",
+   "source": "Bhorer Kagoj",
+   "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBDSE9oSUZ3SDRydEVvYkpkdUtpS0JsdVB3UUhTcGJoUXNUNEJSRllBekdBRGZEVnVWdDhfYlc3YzlsUnkyc0NYelNERC1FNWhyQV9iWXpR?oc=5",
+   "published": "2026-11-11T04:04:00+00:00",
+   "topic": "আবহাওয়া"
+  },
+  {
+   "title": "চার দশকের সংগ্রাম, দেশি মাছ চাষের মাধ্যমে নীল বিপ্লব জাতীয় পুরস্কারজয়ী কৃষকের",
+   "source": "India Hood Bangla",
+   "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQbTJ2bGJCNnZhc0lMY1NmTGloRlBYYnlVLXZCUExBanpReEdqRFZUSFdJUDMxWHk4T3h4bTBWdlBCMVpuUmMtMnByNDEzUU0td0Y5YzJYd0F6NTZEVjljMTZLeHAyTzBVaFlqdngwNlJaeWItZXc3cG41S3ItM0liaGRHZkV4RERfTkZUM3NtYndLZndXVFhXN1dKSjBwMzdmaWZfUm4tMzM0QnlKSmZGaXl3LUtONnAtcEhqemxzOXIxeml1eXlmNllsSE1zbThxckE?oc=5",
+   "published": "2026-11-11T03:05:32+00:00",
+   "topic": "মাছ"
+  },
+  {
+   "title": "রবি মৌসুমে কেন আবাদ কমানোর পরিকল্পনা করছেন কৃষকেরা",
+   "source": "The Business Standard",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9EV05sV09id3dlNWc5OHM2OXRJZzhWbzQ1QkktMUQyX1lTbk5oZ2xaYTZnZXBSRnJPTk0xaV9nLUdfbVhoQVl1YzdNZzBxLS1IM0haY0ZZdHZrS0xERWdJS2FGRVoxMmNHWDhjMEZ3?oc=5",
+   "published": "2026-11-10T20:54:11+00:00",
+   "topic": "কৃষি"
+  },
+  {
+   "title": "কৌটায় মাছ রপ্তানি করে বৈদেশিক মুদ্রা অর্জন সম্ভব",
+   "source": "Jagonews24",
+   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9aaUF0T1dVRWdsTTBuZXBPSkpKSkdfcTZ3Z0U2VU9sVS1sXzhZbW4xVzZ4OEktclBqR1lwOGJjWDlSU3pqOU9ydnhZTllucW1kNjF6UGpfNGVtSGF2QmYtTXMySUJBXzVtMGV3STJZRmEzU2c?oc=5",
+   "published": "2026-11-10T15:29:00+00:00",
+   "topic": "মাছ"
   },
   {
    "title": "রবি মৌসুমে শ্রীপুরে কৃষি প্রণোদনা পাচ্ছেন ৩৪০০ কৃষক",
@@ -31,13 +73,6 @@
    "topic": "কৃষি"
   },
   {
-   "title": "১১ই নভেম্বরের আবহাওয়ার পূর্বাভাস: দা নাং, কুয়াং গাই এবং ডাক লাকে ভারী বৃষ্টিপাত।",
-   "source": "Vietnam.vn",
-   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOeFdDODJkMjQ1cGxvOFgxM3ZZSF93MW94MnJ0SHdXVnJ4eUdpbmFDQW8xUzlrV3BGclNxNEs4UlBIdUNJcE1fakR3SHpodmNPRmF5WmVpOTlXM01rc204d2M3bUE2aVBsUXpPbVpfR2ZvbUpYdnkyX2tLdGNVeERxT3l2bGVyNUdhVmtsNmVoMzlwZnVQZ0l3?oc=5",
-   "published": "2026-11-10T14:45:13+00:00",
-   "topic": "আবহাওয়া"
-  },
-  {
    "title": "চট্টগ্রামের বাজারে সবজি ও মুরগির দাম কমছে, মাছ-মাংস স্থিতিশীল | জাতীয় | বাংলাদেশ সংবাদ সংস্থা (বাসস)",
    "source": "Bangladesh Sangbad Sangstha (BSS)",
    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE43a2QzblRpQVNveVVfN05WSHhkME5LLXdrSmdVQm51d3p6aTdmbjZlbmNjUjlPemRoeDRRNGx1cW9vRTVpRTI4ZzZvcXU0LU5hbEZodlk5VUh0QQ?oc=5",
@@ -45,11 +80,11 @@
    "topic": "বাজার"
   },
   {
-   "title": "আজ রাতেও ১টার মধ্যে ৬০ কিমি বেগে ঝড়ের শঙ্কা, তাপমাত্রা নিয়ে নতুন বার্তা",
-   "source": "Campus Times",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBycWJEZ2hPQlhMbHRRbjNnZnNUblR2aF8wYV9ZQVd4dmdtT0FtNkdEYUJLWFVwc1dJczNMNkZLV0swWmNtOThya1VPbU95UGhJQllSTlB0RTBNWkFhSmhV?oc=5",
-   "published": "2026-11-10T13:39:00+00:00",
-   "topic": "আবহাওয়া"
+   "title": "বরগুনায় ২২ হাজার ৫০০ কৃষক পাবেন বিনামূল্যে বীজ-সার",
+   "source": "Dhaka Xpress",
+   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFA5MW5UdnhjZ1hTVmNmTlQtZ0EzYnlvSzdCbnk5Sjg4c1BFNkZ5X2I2Ujk0ZHEwSHlVbXl0aUJvdERreVNOYWpfZDhYQkV2Z1JjX2VrUXFnS2ZmUEJ5RFE?oc=5",
+   "published": "2026-11-10T13:22:00+00:00",
+   "topic": "কৃষি"
   },
   {
    "title": "উপকূলীয় এলাকায় ফসল উৎপাদন বৃদ্ধিতে আমতলীতে কৃষক সমাবেশ",
@@ -57,13 +92,6 @@
    "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBWazBaR2R0X2RoQk9uSjZpV2VBT25hVEhEdkh5Z19UVV9aVmpsRmwwdTZ0LVlodUhUMjgwZ1BkTTNuR3pIZkF2M0t6WXRrQVgyLWdhSHhXUDNiU1A3Nlcwei14MU8?oc=5",
    "published": "2026-11-10T13:18:44+00:00",
    "topic": "কৃষি"
-  },
-  {
-   "title": "দা নাং এবং কোয়াং গাই থেকে ডাক লাক পর্যন্ত প্রদেশগুলোর পূর্বাঞ্চলে ভারী বৃষ্টির পূর্বাভাস দেওয়া হয়েছে।",
-   "source": "Vietnam.vn",
-   "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQazZpVXNDZUROSml6U0w0emgzYUc2eG5DcHBwTWFaRHpQdU03c0gzalNqNG4tSXlQb1FCSGMtNFYyZHExZnBKYzF3OFZXNm9xT3hhMnNuQmlQa0hhNmU3UFk3cWFuV2FSSEtfUjlEOTJDR2xaazNfVmJTMGp5NGVRUnhoU2lSZy1Pc0Z1VEJudkZITjB2RTN2NC1RWmtpd1h2?oc=5",
-   "published": "2026-11-10T13:07:15+00:00",
-   "topic": "আবহাওয়া"
   },
   {
    "title": "মাগুরায় মৎস্য অভয়াশ্রম ব্যবস্থাপনা ও নিরাপদ মাছ চাষ বিষয়ে প্রশিক্ষণ",
@@ -94,31 +122,10 @@
    "topic": "বাজার"
   },
   {
-   "title": "উল্লাপাড়ায় ২৬০০০ হাজার কৃষকের মাঝে বিনামূল্যে সার ও বীজ বিতরণ",
-   "source": "Sorejomin Barta",
-   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9SS3hUa1R2Vm5QR0ZrV1BJMHJmZGdSdlFKcGRNWDdLUTctRnpXNWF1eElwUEJ5VjRLaXdHNVp1dXpWWEdTQzdraElWa0FRZlpjQUxabXVwenRiSVZG?oc=5",
-   "published": "2026-11-10T07:08:00+00:00",
-   "topic": "কৃষি"
-  },
-  {
-   "title": "পাঁচ হাজার কৃষককে টেকসই কৃষি কার্যক্রমে যুক্ত করবে স্বপ্ন",
-   "source": "প্রথম আলো",
-   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9hYmhXX2Z1N05uVkNIYzczdWtKdW1oYUZzVzhLUHdhSF8zNWlNTGhlNFMyaWVsaEpWVUJmUUFZZnNPVDhncGlnMFRfNy1XSzVuSkhUaGRNdkxCVEh4bkkxU1RlUzJpRUXSAXRBVV95cUxOekdPZVduLWFWRjBOWFhOSmdrYU0tcXBGOVVTQUNIaEdVVHNuY1Z3VzBlMjhxUzdQVXRhTkFJendvMTN1WFY5SVhNV0pZVHdfWjNyaXBXMEpuWGR3bzNLZXQ3dVZuQVNhS3J5TXlkSXRpbmpiRg?oc=5",
-   "published": "2026-11-09T17:05:00+00:00",
-   "topic": "কৃষি"
-  },
-  {
    "title": "'বিশ্ববাজারে বাংলাদেশের মাছের পরিচিতি বাড়াতে চাই': ডিসি জাহিদ",
    "source": "দেশ রূপান্তর",
    "url": "https://news.google.com/rss/articles/CBMiywRBVV95cUxNMm1IMjJDM3JxR0lEQk90N1RMeTFiRXIxRUZoRlVjN3cxbXBGZm5EYVZZSFdpUXN2WWt1T3JickttcWxzWWFiZmJWVEZzUVl4MXFIblIzb2Q2NmNSdnZaOU1wajcxV1hhcGx6c292T2FVb244ZEc0Rmp6dHdsU3QxYXdiaEZRT0ptaXpxR1d1Rkc0YU5BV2RLUlRZR0t2SENxRjZ6bnpWTGpfZllxbkxpSlVMUHIwcnNnOU1KTWhGQ3JFaU5jeTl1bm1RbS00SzZZcHdVdHNORFBxdnlVUVQ0QUhOd0dYOXpzamRJSjdGQkM5MHh3bGhyelJUd09heTFLN1B5TUxrVUFpdWdROW5TRVMwUWxsZlBXV01SclFNUVJ1aVNuSE1sZ0xodG54QTJZUVlSMXgwT1l1VWZOOGZsakRLVkVJY18weERobDBKVXU4UHE1aU5yUVJMWFJuQ2pJUzNsTkFMaEFMRjVwbV9aSGZ0WWxrTXhxNW0wNUhjY1RQVWhldjZBa21WNFZWRDFDcFFJZUJIa3R6ZUdVMUlmMHhnZllpMkN2WjQyVk5IOWh1elNXMkdTa1NObFU4MVU0aTRYZDZDckZoQnN0djgzNnZ4VnhUVDZJYkU3ZWRQTGgwMmsyUHZmeng3a0FWUC1CbVhZQ2lBSnNMU3Z0cFFCNnd3SkRjd2ZQaUIxdGFwYVgzTVJENFllbHFmUks5M1Q3V0gxWlhtZUNmQXpwb18yRmxxVGpHN280cDV5ODBEZmVkRzlBZk9sRktJSdIB0ARBVV95cUxPakZLaG9kdlNhNko3UXF1Qnctejg0WG5FSndfUzdRcjhmUzg3SHRUNUFYLUt2cFM1aUlMNE5xdUFabVlJU0lxZ05adjdDaGxranRMX2hSYWdGTjNMNFp2YTRneW1PYkl0eEhhN3hRUmQ1S0FDcFExUTUzZTh5SFlEYjB2M1ZROXluVlJNOVNoQkNBWmxPdUJZdUFMN2lqUlBfSmJPSXEzLTZoRXU1SG9EM2ozMEE4MGU4ZFJTVmgzNDFOVW1RTUZJVlF4QzZxQk4tVENSR2Q2VFlubGhHYmhrLTlGekp0ZUQ4bFUtZUZSVjZCdm9TUmprNzlTdjc1ZkQ4dmdPRDdPNVFpMWIxeEJjaVFWTGhRZFZMOTloU3FjOG9jd3o1c3BZWmdBOFM0SGdDV3BzNjFfQ1V0UnlmbEUzVUk1U2N5bjJQU0JMRVdaRWV4MUdHbzBDTlBYdEl1b3U3eFozSS1TcHZSelZEeGJuQ2FzbWFZYThEY3BXOWc0RV9PSzRxWDNSUHRFcmJHSmIwRDY2WkhPN2ZGeXJpV3Jic2NOMDJ5X3Z2REJoY0NtZDFFdGUxTjRqaWN3ZFF4WnZ4TEF5aUhXaG1UaTJMU2tIdHFfQlp4Y1JaaU45ZjZzWENpOXFMN1p3TDM2NEJqcm5PZElMbHRobUlDdHNVS0VUN09PbFhibk5yM3hfQlltb1VoRmEydy02dDZtbDdham5KdFQyNXJKMk12NF9YOW5oWVE2MVJDeHhyZy1TNk9pNm5saTUxSnFoSmlvTXNlSkdW?oc=5",
    "published": "2026-11-09T14:26:14+00:00",
-   "topic": "মাছ"
-  },
-  {
-   "title": "‘বিশ্ববাজারে বাংলাদেশের মাছের পরিচিতি বাড়াতে হবে’",
-   "source": "Daily Times Of Bangladesh",
-   "url": "https://news.google.com/rss/articles/CBMiuwJBVV95cUxPbk1tUDZmV3NGNDhfZThndTgwQ1gtU1ZMR1hhOGVlaTJsR3pWWVlfMzlKTTFkLXliREhBOGZXUW5pNXhTZE1OSXUtR2lyRzVTSkI2bTVNb09CaEY2WFlmcHVmVHNrMWFWekJ5VVkzVWxNVk91WnZsZmhvanhCdF9UR1ZtaUMxd3FNeE5TQjlJTXI3b3cwcWNtZWd3bU1GTDMweWpIcmhpeUtsWEVNZGJVY215U2dySnNJLV9yclhORFExanpLa2t0U1hjY3FEa3Qta0hqcnNqZzBaMmJMa01OcVROdTZFbHBDY2NPaTRiS1RFXzl3dWhBSktGRnZrZGhHSWtNcm8zLXQzWTl1enowUWFYNzdmNTdONWo1TFZlTmVHd3lud0E2WlFzWHNHUlZyS2cwWkowVDhpTmM?oc=5",
-   "published": "2026-11-09T11:00:11+00:00",
    "topic": "মাছ"
   },
   {
@@ -134,13 +141,6 @@
    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1LUXVBREp5aVpYVmFHeUNINWJzMEQwdjM3R0xVSldMVmdRc1lmSThUcXBOV0hITjZtY0hTOTU1SzB1ZGxvcHlYN3V3OHBiRGNUY3RSNFlkdS1zTjdY0gFqQVVfeXFMT0JIYjh6SnFqeXVsN2otY01SM2dHd2VfTHNkbmwzUDRIcnJVcmUxX0trd09US1FfaEhSdWFFS0lTSF9IcEJ2NUZPdkZ6ODFncTJTRXNzSXRKcjg2VmQ2TEQzTkR2enBjUW9Ydw?oc=5",
    "published": "2026-11-09T07:47:54+00:00",
    "topic": "বাজার"
-  },
-  {
-   "title": "ভালো বেতনের কর্পোরেট চাকরি ছেড়ে শুরু করেন মাছের চাষ, বছরে ৩০ লক্ষ আয় সৌরভের",
-   "source": "India Hood Bangla",
-   "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPVm5BYVZqWnpsQ19EQVZ5XzQtRDFCeEI1TVZOenNFYVFaSFRlcHo5UlIzYk9qdzRQSkpURE9tMjdpaElZT1BuT1E2ZUNiX2tKZzBoYjdCTnlZTVg4d3RkVF9TZ195eTZQRGN5akhoNUZZZW5SNjZrR2twaENzenNFVThCRnNrY3N0VExyZUdaSHJOelZ5bXRxeg?oc=5",
-   "published": "2026-11-09T04:58:14+00:00",
-   "topic": "মাছ"
   }
  ]
 }
